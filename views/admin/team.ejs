@@ -1,0 +1,52 @@
+<%-include('header.ejs')%>
+      <main class="dashboard-content">
+        <div class="container-fluid px-3 px-lg-4 py-4">
+          <div class="page-heading">
+            <div class="page-heading-copy">
+              <span class="page-icon"><i class="bi bi-file-earmark" aria-hidden="true"></i></span>
+              <div>
+                <p class="eyebrow mb-1">Starter</p>
+                <h1 class="h3 mb-1">Team</h1>
+                
+              </div>
+            </div>
+            
+          </div>
+
+          <section class="panel">
+            <form action="/admin/team_save" method="post">
+             <label>title</label>
+             <input type="text" class="form-control mb-4" name="title">
+             <label>description</label>
+             <textarea class="form-control mb-4" name="desc"></textarea>
+             <button class="btn btn-primary">save</button>
+             </form>
+
+             <table class="table table-border mt-5">
+              <tr>
+                <th>sr.no</th>
+                <th>title</th>
+                <th>description</th>
+                <th>status</th>
+              </tr>
+<% for(var i=0;i<data.length;i++){ %>
+          <tr> <th><%= i+1; %></th>
+                <th><%= data[i].title; %></th>
+                <th><%= data[i].description; %></th>
+                <th>
+                  
+                  <a href="/admin/team_delete/<%=data[i].ds_id;%>"><button class="btn">delete</button></a>
+                  <a href="/admin/team_edit/<%=data[i].ds_id;%>"><button class="btn">edit</button></a>
+                </th>
+              </tr>
+             
+           <% } %>
+
+             </table>
+            
+
+        </section>
+        </div>
+      </main>
+
+<%-include('footer.ejs')%>
